@@ -4,10 +4,11 @@
 
 body {
   font-family: "Poppins", monospace;
+  margin: 0;
 }
 
 main {
-  margin: 0;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 375px 1fr;
   grid-template-rows: 7rem 20rem 18rem 12rem 7rem;
