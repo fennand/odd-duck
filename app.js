@@ -64,6 +64,7 @@ function renderProducts() {
 function handleImgClick(event) {
   if (userClicks === maxClicks) {
     alert("You have run out of votes");
+    renderChart();
     return;
   }
   userClicks++;
@@ -89,6 +90,7 @@ function showResults() {
     li.textContent = `${product.display}: Viewed - ${product.views} Clicked - ${product.clicks}`;
 
     results.appendChild(li);
+    document.getElementById("view-results").disabled = "true";
   }
 }
 
@@ -96,6 +98,44 @@ const viewResults = document.getElementById("view-results");
 viewResults.addEventListener("click", showResults);
 
 renderProducts();
+
+// Chart
+function renderChart() {
+  const ctx = document.getElementById("myChart");
+
+  const labels = [];
+  const views = [];
+  const clicks = [];
+
+  for (let i = 0; i < products.length; i++) {
+    labels.push(products[i].display);
+    views.push(products[i].views);
+    clicks.push(products[i].clicks);
+  }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "# of views",
+          data: views,
+          borderWidth: 3,
+          backgroundColor: ["rgba(255, 0, 110)"],
+          borderColor: ["rgba(131, 56, 236)"],
+        },
+        {
+          label: "# of clicks",
+          data: clicks,
+          borderWidth: 3,
+          backgroundColor: ["rgba(0, 245, 212)"],
+          borderColor: ["rgba(254, 228, 64)"],
+        },
+      ],
+    },
+  });
+}
 /* // DOM Nodes
 let productContainer = document.querySelector("section_images");
 let image1 = document.querySelector("random1");

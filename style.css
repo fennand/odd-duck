@@ -7,10 +7,10 @@ body {
 }
 
 main {
-  margin: 0.5rem auto;
+  margin: auto;
   display: grid;
   grid-template-columns: 375px 1fr;
-  grid-template-rows: 7rem 26rem 5rem 17rem 7rem;
+  grid-template-rows: 7rem 20rem 18rem 12rem 7rem;
   background-image: url("assets/animalprint.jpg");
   box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.9);
   border: 4px solid aquamarine;
@@ -77,7 +77,7 @@ li {
 }
 
 #img-section {
-  max-height: 26rem;
+  max-height: 20rem;
   grid-column: 2/3;
   grid-row: 2/3;
   display: flex;
@@ -89,12 +89,18 @@ li {
 
 #img-section img {
   width: 350px;
-  max-height: 20rem;
+  max-height: 16rem;
   border: 3px solid transparent;
 }
 
 #img-section img:hover {
   border: 3px solid rgb(187, 14, 187);
+}
+
+#section_chart {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  max-height: 18rem;
 }
 
 #text_box {
@@ -115,13 +121,10 @@ li {
   border-top: 4px solid rgb(233, 97, 233);
   background-image: url("assets/duckbackground.jpg");
   box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.9);
-}
-
-#footer_text {
   display: flex;
   justify-content: space-evenly;
   font-size: 1.5rem;
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 button {
