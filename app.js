@@ -1,4 +1,102 @@
-// DOM Nodes
+const img1 = document.getElementById("img1");
+const img2 = document.getElementById("img2");
+const img3 = document.getElementById("img3");
+
+let userClicks = 0;
+let maxClicks = 25;
+
+function Product(name, display) {
+  this.name = name;
+  this.display = display;
+  this.src = `./assets/${name}.jpg`;
+  this.views = 0;
+  this.clicks = 0;
+}
+
+const products = [
+  new Product("bag", "R2D2 Bag"),
+  new Product("banana", "Banana Slicer"),
+  new Product("bathroom", "Toilet Device Holder"),
+  new Product("boots", "Toeless Wellies"),
+  new Product("breakfast", "Breakfast Maker"),
+  new Product("bubblegum", "Meat Ball Bubblegum"),
+  new Product("chair", "Wrong Chair"),
+  new Product("cthulhu", "Cthulhu Doll"),
+  new Product("dog-duck", "Dog Dusk Mask"),
+  new Product("dragon", "Dragon Meat"),
+  new Product("pen", "Pen Cutlery"),
+  new Product("pet-sweep", "Pet Sweeper"),
+  new Product("scissors", "Pizza Scissors"),
+  new Product("shark", "Shark Sleeping Bag"),
+  new Product("sweep", "Baby Sweeper"),
+  new Product("tauntaun", "Tauntaun Sleeping Bag"),
+  new Product("unicorn", "Unicorn Meat"),
+  new Product("water-can", "Wrong Watering Can"),
+  new Product("wine-glass", "Wrong Wine Glass"),
+];
+
+function randomProdIdx() {
+  return Math.floor(Math.random() * products.length);
+}
+
+function renderProducts() {
+  let prod1 = randomProdIdx();
+  let prod2 = randomProdIdx();
+  let prod3 = randomProdIdx();
+
+  while (prod1 === prod2 || prod1 === prod3 || prod2 === prod3) {
+    prod2 = randomProdIdx();
+    prod3 = randomProdIdx();
+  }
+
+  img1.src = products[prod1].src;
+  img2.src = products[prod2].src;
+  img3.src = products[prod3].src;
+  img1.alt = products[prod1].name;
+  img2.alt = products[prod2].name;
+  img3.alt = products[prod3].name;
+
+  products[prod1].views++;
+  products[prod2].views++;
+  products[prod3].views++;
+}
+
+function handleImgClick(event) {
+  if (userClicks === maxClicks) {
+    alert("You have run out of votes");
+    return;
+  }
+  userClicks++;
+  let clickedProduct = event.target.alt;
+  for (let i = 0; i < products.length; i++) {
+    if (clickedProduct === products[i].name) {
+      products[i].clicks++;
+      break;
+    }
+  }
+  renderProducts();
+}
+
+img1.addEventListener("click", handleImgClick);
+img2.addEventListener("click", handleImgClick);
+img3.addEventListener("click", handleImgClick);
+
+function showResults() {
+  const results = document.getElementById("results");
+  for (let i = 0; i < products.length; i++) {
+    const li = document.createElement("li");
+    const product = products[i];
+    li.textContent = `${product.display}: Viewed - ${product.views} Clicked - ${product.clicks}`;
+
+    results.appendChild(li);
+  }
+}
+
+const viewResults = document.getElementById("view-results");
+viewResults.addEventListener("click", showResults);
+
+renderProducts();
+/* // DOM Nodes
 let productContainer = document.querySelector("section_images");
 let image1 = document.querySelector("random1");
 let image2 = document.querySelector("random2");
@@ -34,8 +132,8 @@ function renderProducts() {
     product3Index = getRandomIndex();
   } */
 
-  // change the src of our 2 images
-  image1.alt = allProducts[product1Index].name;
+// change the src of our 2 images
+/*  image1.alt = allProducts[product1Index].name;
   image2.alt = allProducts[product2Index].name;
   image3.alt = allProducts[product3Index].name;
   image1.src = allProducts[product1Index].src;
@@ -46,7 +144,7 @@ function renderProducts() {
   allProducts[product1Index].views++;
   allProducts[product2Index].views++;
   allProducts[product3Index].views++;
-}
+} */
 /* 
 // handle the goat being clicked
 function handleProductClick(event) {
@@ -75,7 +173,7 @@ function handleProductClick(event) {
 } */
 
 // make the goats
-const allProducts = [
+/* const allProducts = [
   new Product("R2D2 Bag", "assets/bag.jpg"),
   new Product("Banana Slicer", "assets/banana.jpg"),
   new Product("Bathroom Device Holder", "assets/bathroom.jpg"),
@@ -95,7 +193,7 @@ const allProducts = [
   new Product("Unicorn Meat", "assets/unicorn.jpg"),
   new Product("Wrong Watering Can", "assets/water-can.jpg"),
   new Product("Wrong Wrong Wine Glass", "assets/wine-glass.jpg"),
-];
+]; */
 
 // render the results
 // when the user clicks the view results button
@@ -104,4 +202,5 @@ const allProducts = [
 // add the event listener to the goats
 /* productContainer.addEventListener("click", handleProductClick); */
 
-renderProducts();
+/* renderProducts();
+ */
