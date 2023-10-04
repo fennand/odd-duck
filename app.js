@@ -5,35 +5,52 @@ const img3 = document.getElementById("img3");
 let userClicks = 0;
 let maxClicks = 25;
 
-function Product(name, display) {
+const products = [];
+
+function Product(name, display, views, clicks) {
   this.name = name;
   this.display = display;
   this.src = `./assets/${name}.jpg`;
-  this.views = 0;
-  this.clicks = 0;
-}
+  this.views = views;
+  this.clicks = clicks;
 
-const products = [
-  new Product("bag", "R2D2 Bag"),
-  new Product("banana", "Banana Slicer"),
-  new Product("bathroom", "Toilet Device Holder"),
-  new Product("boots", "Toeless Wellies"),
-  new Product("breakfast", "Breakfast Maker"),
-  new Product("bubblegum", "Meat Ball Bubblegum"),
-  new Product("chair", "Wrong Chair"),
-  new Product("cthulhu", "Cthulhu Doll"),
-  new Product("dog-duck", "Dog Dusk Mask"),
-  new Product("dragon", "Dragon Meat"),
-  new Product("pen", "Pen Cutlery"),
-  new Product("pet-sweep", "Pet Sweeper"),
-  new Product("scissors", "Pizza Scissors"),
-  new Product("shark", "Shark Sleeping Bag"),
-  new Product("sweep", "Baby Sweeper"),
-  new Product("tauntaun", "Tauntaun Sleeping Bag"),
-  new Product("unicorn", "Unicorn Meat"),
-  new Product("water-can", "Wrong Watering Can"),
-  new Product("wine-glass", "Wrong Wine Glass"),
-];
+  products.push(this);
+}
+if (localStorage.getItem("products") === null) {
+  new Product("bag", "R2D2 Bag", 0, 0);
+  new Product("banana", "Banana Slicer", 0, 0);
+  new Product("bathroom", "Toilet Device Holder", 0, 0);
+  new Product("boots", "Toeless Wellies", 0, 0);
+  new Product("breakfast", "Breakfast Maker", 0, 0);
+  new Product("bubblegum", "Meat Ball Bubblegum", 0, 0);
+  new Product("chair", "Wrong Chair", 0, 0);
+  new Product("cthulhu", "Cthulhu Doll", 0, 0);
+  new Product("dog-duck", "Dog Duck Mask", 0, 0);
+  new Product("dragon", "Dragon Meat", 0, 0);
+  new Product("pen", "Pen Cutlery", 0, 0);
+  new Product("pet-sweep", "Pet Sweeper", 0, 0);
+  new Product("scissors", "Pizza Scissors", 0, 0);
+  new Product("shark", "Shark Sleeping Bag", 0, 0);
+  new Product("sweep", "Baby Sweeper", 0, 0);
+  new Product("tauntaun", "Tauntaun Sleeping Bag", 0, 0);
+  new Product("unicorn", "Unicorn Meat", 0, 0);
+  new Product("water-can", "Wrong Watering Can", 0, 0);
+  new Product("wine-glass", "Wrong Wine Glass", 0, 0);
+} else {
+  /* TODO */
+  const productsLS = JSON.parse(localStorage.getItem("products"));
+  // for each item in the productsLS array, make a new Product
+  for (let i = 0; i < productsLS.length; i++) {
+    // create a new product for each item in the array
+    //(and the Product function automatically adds it to the producst array)
+    new Product(
+      productsLS[i].name,
+      productsLS[i].display,
+      productsLS[i].views,
+      productsLS[i].clicks
+    );
+  }
+}
 
 function randomProdIdx() {
   return Math.floor(Math.random() * products.length);
@@ -65,6 +82,7 @@ function handleImgClick(event) {
   if (userClicks === maxClicks) {
     alert("You have run out of votes");
     renderChart();
+    localStorage.setItem("products", JSON.stringify(products));
     return;
   }
   userClicks++;
@@ -136,6 +154,8 @@ function renderChart() {
     },
   });
 }
+
+renderProducts();
 /* // DOM Nodes
 let productContainer = document.querySelector("section_images");
 let image1 = document.querySelector("random1");
