@@ -3,7 +3,7 @@ const img2 = document.getElementById("img2");
 const img3 = document.getElementById("img3");
 
 let userClicks = 0;
-let maxClicks = 25;
+let maxClicks = 5;
 
 const products = [];
 
@@ -118,7 +118,7 @@ viewResults.addEventListener("click", showResults);
 renderProducts();
 
 // Chart
-function renderChart() {
+/* function renderChart() {
   const ctx = document.getElementById("myChart");
 
   const labels = [];
@@ -153,7 +153,7 @@ function renderChart() {
       ],
     },
   });
-}
+} */
 
 renderProducts();
 /* // DOM Nodes

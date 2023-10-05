@@ -4,7 +4,7 @@
 
 body {
   font-family: "Poppins", monospace;
-  margin: 2rem;
+  margin: 2rem 0rem;
   width: 100%;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
@@ -12,7 +12,7 @@ body {
 main {
   display: grid;
   grid-template-columns: 23rem 1fr;
-  grid-template-rows: 7rem 20rem 18rem 12rem 7rem;
+  grid-template-rows: 7rem 27rem 7rem 15rem 7rem;
   background-image: url("assets/animalprint.jpg");
   box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.9);
   border: 10px solid aquamarine;
@@ -95,7 +95,7 @@ li {
 }
 
 #img-section {
-  max-height: 20rem;
+  max-height: 27rem;
   grid-column: 2/3;
   grid-row: 2/3;
   display: flex;
@@ -107,18 +107,24 @@ li {
 
 #img-section img {
   width: 350px;
-  max-height: 16rem;
-  border: 3px solid transparent;
+  max-height: 22rem;
+  border: 3px solid #333;
+  border-radius: 15px;
 }
 
 #img-section img:hover {
   border: 3px solid rgb(187, 14, 187);
 }
 
-#section_chart {
+#section_link {
   grid-column: 2/3;
   grid-row: 3/4;
-  max-height: 18rem;
+  max-height: 7rem;
+}
+
+#section_link p {
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
 #text_box {
@@ -156,6 +162,7 @@ button {
   box-shadow: 0 9px #999;
   cursor: pointer;
   outline: none;
+  margin-bottom: 1rem;
 }
 
 button:hover {
@@ -166,4 +173,23 @@ button:active {
   background-color: pink;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+#chart_h1 {
+  font-family: "Raleway Dots", cursive;
+  font-size: 4rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+#section_chart {
+  background-image: url("assets/duckbackground.jpg");
+  box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.8);
+  color: black;
 }
